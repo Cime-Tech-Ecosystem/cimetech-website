@@ -1,0 +1,77 @@
+/* ===== Cime Tech: additions from the website review (does not change the layout) ===== */
+
+/* Fonts: Montserrat headings, Varela Round body, Roboto Mono for small labels only */
+body { font-family: 'Varela Round', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif; }
+h1, h2, h3, h4, .font-serif, .brand-name {
+  font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif !important;
+}
+.tracking-widest, .mono { font-family: 'Roboto Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+
+/* Skip link + visible focus rings (WCAG 2.1 AA) */
+.skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 100; background: #fff; color: #293b66; padding: .75rem 1rem; border-radius: 8px; font-weight: 700; transition: top .2s ease; }
+.skip-link:focus { top: 1rem; }
+button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid #336b64; outline-offset: 3px; }
+
+/* Header: navy bar, white text; shadow appears after scrolling */
+#site-header-row { background: #293B66; transition: box-shadow .3s ease; }
+.header-solid #site-header-row { box-shadow: 0 6px 20px -12px rgba(0,0,0,.5); }
+#mobile-menu { height: calc(100vh - 4rem); max-height: none; }
+.nav-link { transition: color .2s ease; }
+.nav-link:hover { color: #D4D0C4; }
+/* Current page highlighted */
+.nav-link[aria-current="page"] { text-decoration: underline; text-decoration-color: #fff; text-decoration-thickness: 2px; text-underline-offset: 8px; }
+.nav-hub-pill { background: #336b64; color: #fff; padding: .4rem .9rem; border-radius: 9999px; display: inline-block; }
+.nav-link:hover .nav-hub-pill { background: #2a5a54; color: #fff; }
+.nav-link[aria-current="page"] .nav-hub-pill { box-shadow: 0 0 0 2px #293B66, 0 0 0 4px #fff; }
+.nav-link:has(.nav-hub-pill)[aria-current="page"] { text-decoration: none; }
+header a:focus-visible, header button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* Hero: soften contour lines and blend the photo into the background */
+.contour-soft { --contour-color: rgba(255,255,255,.05); }
+.hero-blend {
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 58%, transparent 100%);
+          mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 58%, transparent 100%);
+}
+
+/* Slow contour movement on scroll (disabled for reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  .contour::before { -webkit-mask-position: center calc(50% + var(--cy, 0px)); mask-position: center calc(50% + var(--cy, 0px)); }
+}
+.step svg { transition: transform .4s cubic-bezier(.22,.7,.2,1); }
+@media (hover: hover) { .step:hover svg { transform: translateY(-4px) scale(1.1); } }
+
+/* Elevation gauge */
+.gauge { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); height: 44vh; width: 54px; z-index: 40; pointer-events: none; display: none; font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: .04em; }
+@media (min-width: 1024px) { .gauge { display: block; } }
+.gauge-line { position: absolute; right: 6px; top: 0; bottom: 0; width: 2px; background: rgba(41,59,102,.28); border-radius: 2px; }
+.gauge-fill { position: absolute; right: 6px; top: 0; width: 2px; background: #336b64; border-radius: 2px; height: 0; }
+.gauge-camp { position: absolute; right: 3px; width: 8px; height: 8px; border-radius: 50%; background: #fff; border: 2px solid #293b66; transform: translateY(-50%); }
+.gauge-label { position: absolute; right: 18px; background: #293b66; color: #fff; padding: 2px 6px; border-radius: 6px; white-space: nowrap; }
+.gauge-top { top: -22px; } .gauge-bottom { bottom: -22px; }
+.gauge-now { top: 0; transform: translateY(-50%); background: #336b64; }
+
+/* Floating contact button */
+.fab { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.fab-btn { width: 52px; height: 52px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; background: #336b64; color: #fff; box-shadow: 0 10px 24px -10px rgba(0,0,0,.55); border: 0; cursor: pointer; }
+.fab-btn:hover { background: #2a5a54; color: #fff; }
+.fab-btn svg { width: 24px; height: 24px; }
+.fab-toggle { display: none; background: #762837; }
+.fab-toggle:hover { background: #5E1F2C; }
+@media (max-width: 767px) {
+  .fab-toggle { display: inline-flex; }
+  .fab-items { display: none; flex-direction: column; gap: 10px; }
+  .fab.open .fab-items { display: flex; }
+}
+@media (min-width: 768px) { .fab-items { display: flex; flex-direction: column; gap: 10px; } }
+
+/* Pricing section */
+.price-switch { display: inline-flex; padding: 4px; border-radius: 9999px; background: #fff; border: 1px solid #d4d0c4; }
+.price-switch button { padding: .55rem 1.1rem; border-radius: 9999px; font-weight: 700; color: #293b66; min-height: 44px; }
+.price-switch button[aria-pressed="true"] { background: #293b66; color: #fff; }
+.price-amount { font-family: 'Montserrat', system-ui, sans-serif; font-weight: 700; font-size: 1.75rem; color: #293b66; }
+.price-old { text-decoration: line-through; color: #6b7280; font-size: .95rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
+  .contour::before { -webkit-mask-position: center; mask-position: center; }
+}
